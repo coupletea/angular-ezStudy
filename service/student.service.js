@@ -1,9 +1,8 @@
 angular.module("myApp").factory("StudentData", [
-  "$window",
-  function ($window) {
+  "$window", "$http",
+  function ($window, $http) {
     const studentsKey = "students";
     const classroomsKey = "classrooms";
-
     // Lấy dữ liệu từ localStorage
     function getDataFromLocalStorage(key) {
       try {
@@ -173,4 +172,5 @@ angular.module("myApp").factory("StudentData", [
       },
     };
   },
+
 ]);

@@ -1,4 +1,4 @@
-angular.module('myApp').controller('StudentListController', ['StudentData', '$scope', '$location', function (StudentData, $scope, $location) {
+angular.module('myApp').controller('StudentListController', ['StudentData', '$scope', '$location',"$routeParams",'$rootScope', function (StudentData, $scope, $location, $routeParams,$rootScope) {
   // Initialize scope variables
   $scope.students = [];
   $scope.classrooms = [];
@@ -19,7 +19,6 @@ angular.module('myApp').controller('StudentListController', ['StudentData', '$sc
   ];
   // Function to fetch students based on filters and pagination
   $scope.fetchStudents = function() {
-    $scope.getClassrooms();
       StudentData.getListStudents({
           name: $scope.searchForm.name,
           age: $scope.searchForm.age,
@@ -70,6 +69,10 @@ angular.module('myApp').controller('StudentListController', ['StudentData', '$sc
       $scope.pagination.page = page;
       $scope.fetchStudents();
   };
+
+  $rootScope.$on('classroomUpdated', function() {
+    $scope.fetchStudents();
+});
 
   // Initial data fetches
   $scope.getClassrooms();

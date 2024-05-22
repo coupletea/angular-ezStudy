@@ -8,7 +8,6 @@ angular.module("myApp").controller("CreateStudentController", [
       rules: {  // Include validation rules directly here
         name: [ValidationService.validRequired, [ValidationService.validMaxlength, 50]],
         dateOfBirth: [ValidationService.validRequired],
-        classroom: [ValidationService.validRequired]
       }
     };
 
@@ -35,9 +34,8 @@ angular.module("myApp").controller("CreateStudentController", [
       $scope.student.rules = {
         name: [ValidationService.validRequired, [ValidationService.validMaxlength, 50]],
         dateOfBirth: [ValidationService.validRequired],
-        classroom: [ValidationService.validRequired]
       };
-      const errors = ValidationService.validCheck($scope.student, $scope.classrooms.map(c => c.name));
+      const errors = ValidationService.validCheck($scope.student);
       if (errors.length > 0) {
         alert("Validation errors: " + errors.map(e => e.error).join(", "));
         return false;

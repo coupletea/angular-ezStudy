@@ -5,6 +5,7 @@ angular.module('myApp').controller('ClassroomListController', ['ClassService', '
         limit: 3,
         total: 0
     };
+    
 
     $scope.fetchClassrooms = function() {
         ClassService.getListClassrooms({

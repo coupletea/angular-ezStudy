@@ -7,7 +7,6 @@ $hover-primary-color: #45a049;
 $border-color: #ccc;
 $error-color: #d9534f;
 $error-background-color: #f2dede;
-$link-color: #337ab7;
 
 // Reset and Base Styles
 * {
@@ -131,7 +130,7 @@ table {
         padding: 0.5rem 1rem; // Tăng padding cho dễ nhấn
         margin: 0 5px;
         border: 1px solid #ddd;
-        color: $link-color;
+        color: #337ab7;
         text-decoration: none;
 
         &.disabled {
@@ -140,9 +139,9 @@ table {
         }
 
         &.active {
-            background-color: $link-color;
+            background-color: #337ab7;
             color: white;
-            border-color: $link-color;
+            border-color: #337ab7;
         }
     }
 }

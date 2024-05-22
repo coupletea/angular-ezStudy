@@ -1,4 +1,4 @@
-angular.module("myApp", ["ngRoute", 'ui.bootstrap']).config([
+angular.module("myApp", ["ngRoute", "ui.bootstrap"]).config([
   "$routeProvider",
   function ($routeProvider) {
     $routeProvider
@@ -6,11 +6,6 @@ angular.module("myApp", ["ngRoute", 'ui.bootstrap']).config([
         templateUrl: "/view/student/StudentView.html",
         controller: "StudentListController",
         title: "Học Sinh",
-        resolve: {
-          classrooms: function(StudentData) {
-              return StudentData.getAllClassrooms();
-          },
-      }
       })
       .when("/student/create", {
         templateUrl: "/view/student/CreateStudent.html",

@@ -1,4 +1,4 @@
-angular.module('myApp').controller('EditClassroomController', ['$scope', 'ClassService', '$location', '$routeParams', function($scope, ClassService, $location, $routeParams) {
+angular.module('myApp').controller('EditClassroomController', ['$scope', 'ClassService', '$location', '$routeParams','$rootScope', function($scope, ClassService, $location, $routeParams, $rootScope) {
     $scope.classroom = {};  // This will hold the classroom data
     $scope.isLoading = true;  // Loading state for UI feedback
     $scope.error = null;  // Error state
@@ -26,7 +26,10 @@ angular.module('myApp').controller('EditClassroomController', ['$scope', 'ClassS
         if ($scope.classroomForm.$valid) {  // Check if the form is valid
             ClassService.updateClassroom($scope.classroom)
                 .then(function() {
+                    alert('cập nhật thành công');
+                    $rootScope.$broadcast('classroomUpdated');
                     $location.path('/classrooms');  // Redirect to the classroom listing page on successful update
+                    
                 })
                 .catch(function(error) {
                     $scope.error = error;
@@ -39,5 +42,6 @@ angular.module('myApp').controller('EditClassroomController', ['$scope', 'ClassS
     };
     $scope.cancel = function(){
         $location.path('/classrooms');
-    }
+    };
+    $scope.fetchClassroom();
 }]);
