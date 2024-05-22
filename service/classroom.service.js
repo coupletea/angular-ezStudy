@@ -69,7 +69,20 @@ angular.module('myApp')
     };
 
     return {
-        getClassroomById: getClassroomById,
+        getClassroomById : (id) => {
+            return $q((resolve, reject) => {
+                getDataKey(classroomsKey).then(classrooms => {
+                    const found = classrooms.find((item) => item.id == id);
+                    if (found) {
+                        resolve(found);
+                    } else {
+                        reject('Classroom not found');
+                    }
+                }).catch(error => {
+                    reject(`Error accessing data: ${error}`);
+                });
+            });
+        },
         createClassroom: (payload) => {
             return getDataKey(classroomsKey).then(classrooms => {
                 payload.id = generateId(classrooms);

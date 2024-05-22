@@ -1,6 +1,6 @@
 angular.module("myApp").factory("StudentData", [
-  "$window", "$http",
-  function ($window, $http) {
+  "$window", "$q",
+  function ($window, $q) {
     const studentsKey = "students";
     const classroomsKey = "classrooms";
     // Lấy dữ liệu từ localStorage
@@ -35,18 +35,18 @@ angular.module("myApp").factory("StudentData", [
       return data.length ? Math.max(...data.map((item) => item.id)) + 1 : 1;
     }
 
-    const classroomsCache = getDataFromLocalStorage(classroomsKey); // Cache này sẽ giúp giảm thiểu số lần truy cập vào localStorage
-
-    const getClassroomById = (id) => {
-      return new Promise((resolve, reject) => {
-        const classroom = classroomsCache.find((item) => item.id == id);
+    function getClassroomById(id) {
+      return $q((resolve, reject) => {
+        const classrooms = getDataFromLocalStorage(classroomsKey);
+        const classroom = classrooms.find(classroom => classroom.id == id);
         if (classroom) {
           resolve(classroom);
         } else {
-          reject(`No classroom found with ID: ${id}`);
+          reject("Lớp không xác định");
         }
+        console.log('class: ',classroom);
       });
-    };
+    }
 
     const flatClassTree = (nodes, depth = 0, acc = []) => {
       nodes.forEach((node) => {
@@ -82,7 +82,18 @@ angular.module("myApp").factory("StudentData", [
     };
 
     return {
-      getClassroomById: getClassroomById,
+      getClassroomById: (id) => {
+        return $q((resolve, reject) => {
+          const classrooms = getDataFromLocalStorage(classroomsKey);
+          const classroom = classrooms.find(classroom => classroom.id == id);
+          if (classroom) {
+            resolve(classroom);
+          } else {
+            reject("Lớp không xác định");
+          }
+          console.log('class: ',classroom);
+        });
+      },
       getStudentById: (id) => {
         return new Promise((resolve, reject) => {
           try {
@@ -128,41 +139,45 @@ angular.module("myApp").factory("StudentData", [
       },
 
       getListStudents: ({ name, age, classroom, page, limit }) => {
-        return new Promise((resolve, reject) => {
+        return $q((resolve, reject) => {
           try {
             const students = getDataFromLocalStorage(studentsKey);
-            let filtered = students.filter(
-              (student) =>
-                (!name || student.name.includes(name)) &&
-                (!age || student.age === age) &&
-                (!classroom || student.classroom === classroom)
+            const filtered = students.filter(student =>
+              (!name || student.name.includes(name)) &&
+              (!age || student.age == age) &&
+              (!classroom || student.classroom == classroom)
             );
 
-            const total = filtered.length;
             const start = (page - 1) * limit;
             const paginatedItems = filtered.slice(start, start + limit);
 
-            Promise.all(
-              paginatedItems.map((student) => {
-                return getClassroomById(student.classroom)
-                  .then((classroom) => {
-                    student.classroomName = classroom
-                      ? classroom.name
-                      : "Lớp không xác định";
-                  })
-                  .catch(() => {
-                    student.classroomName = "Lớp không xác định";
-                  });
-              })
-            ).then(() => {
-              resolve({ data: paginatedItems, total: total });
+            // Sử dụng Promise.all để lấy thông tin lớp học cho từng sinh viên
+            const studentPromises = paginatedItems.map(student => {
+              if (student.classroom) {
+                console.log("class : ",student.classroom);
+                return getClassroomById(student.classroom).then(classroom => {
+                  student.classroomName = classroom.name;
+                }).catch(() => {
+                  student.classroomName = "Lớp không xác định";
+                });
+              } else {
+                student.classroomName = "Lớp không xác định";
+                return $q.resolve();
+              }
+              
             });
+
+            $q.all(studentPromises).then(() => {
+              resolve({ data: paginatedItems, total: filtered.length });
+            });
+
           } catch (error) {
             console.error("Error processing students:", error);
             reject(error);
           }
         });
       },
+    
 
       getTotalStudents: () => getDataFromLocalStorage(studentsKey).length,
 
