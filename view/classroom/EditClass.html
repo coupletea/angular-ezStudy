@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ezStudy</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/service/classroom.service.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+    <script src="/directive/pagination.directive.js"></script>
+    <script src="/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/view/classroom/classroom.css">
+</head>
+
+<body ng-controller="EditClassroomController">
+    <div>
+        <div class="container">
+            <h1>Thay đổi thông tin lớp</h1>
+            <div ng-show="isLoading">Loading...</div>
+            <div ng-show="error" class="error">
+                Error: {{ error }}
+            </div>
+            <form name="classroomForm" ng-submit="updateClassroom()" novalidate>
+                <div class="form-group">
+                    <label for="classroomName">Classroom Name:</label>
+                    <input type="text" id="classroomName" ng-model="classroom.name" required>
+                    <span ng-show="classroomForm.classroomName.$dirty && classroomForm.classroomName.$error.required" class="help-block">Classroom name is required.</span>
+                </div>
+                <div class="form-group">
+                    <label for="classroomGroup">Classroom Group:</label>
+                    <input type="text" id="classroomGroup" ng-model="classroom.group">
+                </div>
+                <button type="submit" ng-disabled="classroomForm.$invalid">Lưu</button>
+            </form>
+            <button ng-click="cancel()">Hủy</button>
+        </div>
+    </div>
+    
+    <script src="/service/classroom.service.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+</body>
+
+</html>

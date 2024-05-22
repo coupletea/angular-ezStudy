@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My AngularJS App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/Module/class.module.js"></script>
+    <script src="/service/classroom.service.js"></script>
+    <script src="/Module/student.module.js"></script>
+    <script src="/service/student.service.js"></script>
+    <script src="/controller/studentCtr/student.controller.js"></script>
+    <script src="/controller/studentCtr/addstudent.controller.js"></script>
+    <script src="/controller/studentCtr/editstudent.controller.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+    <script src="/directive/studentTable.directive.js"></script>
+    <script src="/directive/pagination.directive.js"></script>
+    <link rel="stylesheet" type="text/css" href="scss/style.css">
+
+</head>
+
+<body ng-app="myApp">
+    <h1>EZSTUDY</h1>
+
+    <div class="navBar">
+        <a class="link" href="#!students">Học Sinh</a>
+        <a class="link" href="#!classrooms">Lớp</a>
+      </div>
+    <div ng-view></div>
+
+    <script src="/app.js"></script>
+    <script src="/service/validcheck.service.js"></script>
+    <script src="/service/student.service.js"></script>
+    <script src="/controller/studentCtr/student.controller.js"></script>
+    <script src="/controller/studentCtr/addstudent.controller.js"></script>
+    <script src="/controller/studentCtr/editstudent.controller.js"></script>
+    <script src="/service/classroom.service.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+    <script src="/directive/pagination.directive.js"></script>
+</body>
+
+</html>

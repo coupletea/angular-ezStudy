@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ezStudy</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/service/classroom.service.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+    <script src="/directive/pagination.directive.js"></script>
+    <script src="/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/view/classroom/classroom.css">
+</head>
+
+<body ng-controller="AddClassroomController">
+    <div class="container">
+        <h1>Thêm Lớp</h1>
+        <form name="addClassroomForm" ng-submit="submitForm()">
+            <div>
+                <label for="class-name">Tên lớp:</label>
+                <input id="class-name" type="text" placeholder="Nhập tên lớp" ng-model="form.name.value" required />
+            </div>
+            <div>
+                <label for="class-group">Nhóm lớp:</label>
+                <select id="class-group" ng-model="form.group.value" ng-options="classroom.id as classroom.name for classroom in classrooms">
+                    <option value="">Select a group</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Lưu</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/service/classroom.service.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Sinh Viên Mới</title>
+    <link rel="stylesheet" type="text/css" href="/view/student/student.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/app.js"></script>
+    <script src="/service/validcheck.service.js"></script>
+    <script src="/service/student.service.js"></script>
+    <script src="/controller/studentCtr/student.controller.js"></script>
+    <script src="/controller/studentCtr/addstudent.controller.js"></script>
+    <script src="/controller/studentCtr/editstudent.controller.js"></script>
+    <script src="/directive/pagination.directive.js"></script>
+</head>
+
+<body ng-controller="UpdateStudentController">
+    <div class="container">
+        <h2>Cập Nhật Thông Tin Sinh Viên</h2>
+        <form novalidate>
+            <input type="text" ng-model="student.name" placeholder="Tên Sinh Viên" required />
+            <input type="number" ng-model="student.age" placeholder="Tuổi" required />
+            <select ng-model="student.classroom">
+                <option value="">Chọn Lớp</option>
+                <option ng-repeat="classroom in classrooms" value="{{classroom.id}}">{{classroom.name}}</option>
+            </select>
+            <button ng-click="updateStudent(student)">Cập Nhật</button>
+        </form>
+    </div>    
+    <script src="/app.js"></script>
+    <script src="/service/student.service.js"></script>
+    <script src="/controller/studentCtr/editstudent.controller.js"></script>
+    <script src="/controller/studentCtr/student.controller.js"></script>
+</body>
+
+</html>

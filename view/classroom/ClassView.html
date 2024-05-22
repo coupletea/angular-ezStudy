@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ezStudy</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/service/classroom.service.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+    <script src="/directive/pagination.directive.js"></script>
+    <script src="/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/view/classroom/classroom.css">
+</head>
+
+<body ng-controller="ClassroomListController">
+    <div class="container">
+        <button ng-click="onCreate()">Thêm Lớp</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên Lớp</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="classroom in classrooms">
+                    <td>{{$index + 1}}</td>
+                    <td>{{classroom.name}}</td>
+                    <td>
+                        <button ng-click="onUpdate(classroom.id)">Sửa</button>
+                        <button ng-click="onDelete(classroom.id)">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-directive page="pagination.page" total="pagination.total" limit="pagination.limit" on-page-change="onPageChange(page)"></pagination-directive>
+    </div>
+
+    <script src="/service/classroom.service.js"></script>
+    <script src="/controller/class/class.controller.js"></script>
+    <script src="/controller/class/addclass.controller.js"></script>
+    <script src="/controller/class/editclass.controller.js"></script>
+</body>
+
+</html>

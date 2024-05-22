@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm Sinh Viên Mới</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+  <script src="/app.js"></script>
+  <script src="/service/student.service.js"></script>
+  <script src="/controller/studentCtr/student.controller.js"></script>
+  <script src="/controller/studentCtr/addstudent.controller.js"></script>
+  <script src="/controller/studentCtr/editstudent.controller.js"></script>
+  <script src="/service/student.service.js"></script>
+  <script src="/directive/pagination.directive.js"></script>
+  <link rel="stylesheet" type="text/css" href="/view/student/student.css">
+</head>
+
+<body ng-controller="CreateStudentController">
+  <div class="container">
+    <h2>Thêm học sinh</h2>
+    <form name="studentForm" ng-submit="addStudent()" novalidate>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" ng-model="student.name" required />
+      </div>
+      <div class="form-group">
+        <label>Date of Birth:</label>
+        <input type="date" ng-model="student.dateOfBirth" required />
+      </div>
+      <div class="form-group">
+        <label>Classroom:</label>
+        <select ng-model="student.classroom" ng-options="classroom.id as classroom.name for classroom in classrooms"
+          required>
+          <option value="">Select a Classroom</option>
+        </select>
+      </div>
+      <button type="submit" ng-disabled="studentForm.$invalid">Lưu</button>
+    </form>
+  </div>
+
+
+  <script src="/app.js"></script>
+  <script src="/service/validcheck.service.js"></script>
+  <script src="/controller/studentCtr/addstudent.controller.js"></script>
+  <script src="/controller/studentCtr/student.controller.js"></script>
+</body>
+
+</html>

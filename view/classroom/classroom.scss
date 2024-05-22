@@ -1,0 +1,161 @@
+// Variables for common styles
+$font-family-main: 'Arial', sans-serif;
+$background-color: #f4f4f4;
+$text-color: #333;
+$primary-color: #4CAF50;
+$hover-primary-color: #45a049;
+$border-color: #ccc;
+$error-color: #d9534f;
+$error-background-color: #f2dede;
+$link-color: #337ab7;
+
+// Reset and Base Styles
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-family-main;
+    background-color: $background-color;
+    color: $text-color;
+    padding: 20px;
+}
+
+// Container styles for all forms and tables
+.container {
+    background-color: #fff;
+    width: 90%;
+    max-width: 600px; // Smallest width across all media queries
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+// Form specific styles
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold; // Assuming all labels are bold
+    }
+
+    input[type="text"], input[type="number"], select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        &:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+    }
+
+    // Placeholder customization
+    input::placeholder {
+        color: #888;
+    }
+}
+
+// Button styles common to all forms and actions
+button {
+    background-color: $primary-color;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: $hover-primary-color;
+    }
+
+    &[ng-click="cancel()"] {
+        background-color: #f44336;
+
+        &:hover {
+            background-color: #d32f2f;
+        }
+    }
+}
+
+// Table styles
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th, td {
+        text-align: left;
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f8f8f8;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+}
+
+// Pagination styles
+.pagination {
+    margin-top: 20px; // Thêm khoảng trống trên
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+
+    a {
+        font-size: 1rem; // Tăng kích thước font
+        padding: 0.5rem 1rem; // Tăng padding cho dễ nhấn
+        margin: 0 5px;
+        border: 1px solid #ddd;
+        color: $link-color;
+        text-decoration: none;
+
+        &.disabled {
+            pointer-events: none;
+            color: #ccc;
+        }
+
+        &.active {
+            background-color: $link-color;
+            color: white;
+            border-color: $link-color;
+        }
+    }
+}
+
+// Error and loading styles
+.error {
+    color: $error-color;
+    background-color: $error-background-color;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+[ng-show="isLoading"] {
+    text-align: center;
+}

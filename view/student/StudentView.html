@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Sinh Viên</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/app.js"></script>
+    <script src="/service/validcheck.service.js"></script>
+    <script src="/controller/studentCtr/student.controller.js"></script>
+    <script src="/controller/studentCtr/addstudent.controller.js"></script>
+    <script src="/controller/studentCtr/editstudent.controller.js"></script>
+    <script src="/service/student.service.js"></script>
+    <script src="/directive/studentTable.directive.js"></script>
+    <script src="/directive/pagination.directive.js"></script>
+    <link rel="stylesheet" type="text/css" href="/view/student/student.css">
+
+</head>
+
+<body ng-controller="StudentListController">
+    <div class="container">
+        <div class="search-container">
+            <input type="text" ng-model="searchForm.name" placeholder="Search by Name" ng-change="onSearch()">
+            <input type="number" ng-model="searchForm.age" placeholder="Search by Age" ng-change="onSearch()">
+            <select ng-model="searchForm.classroom" ng-change="onSearch()">
+                <option value="">All Classrooms</option>
+                <option ng-repeat="classroom in classrooms" ng-value="classroom.id">{{ classroom.name }}</option>
+            </select>
+        </div>
+        <button ng-click="onCreate()">Thêm học sinh</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th> <!-- Sequence number header -->
+                    <th ng-repeat="column in columns">{{ column.text }}</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students track by $index">
+                    <td>{{$index + 1 + (pagination.page - 1) * pagination.limit}}</td> <!-- Display the sequence number -->
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.classroomName }}</td>
+                    <td>
+                        <button ng-click="onUpdate(student.id)">Sửa</button>
+                        <button ng-click="onDelete(student.id)">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-directive page="pagination.page" total="pagination.total" limit="pagination.limit" on-page-change="onPageChange(page)"></pagination-directive>
+
+    </div>
+    
+</body>
+
+</html>
+
+</html>
