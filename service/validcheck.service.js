@@ -24,17 +24,17 @@ angular.module('myApp').factory('ValidationService', function() {
 
     const validRequired = (value) => ({
         valid: value != null && value.length > 0,
-        error: "This field is required.",
+        error: "Chưa có thông tin.",
     });
 
     const validMaxlength = (value, length) => ({
         valid: value != null && value.length <= length,
-        error: `Maximum length is ${length}.`,
+        error: `Đọ dài tối đa : ${length} ký tự.`,
     });
 
     const validMinlength = (value, length) => ({
         valid: value != null && value.length >= length,
-        error: `Minimum length is ${length}.`,
+        error: `Độ dài tối thiểu : ${length} ký tự.`,
     });
      const validUnique = (value, existingNames) => ({
         valid: !existingNames.includes(value.trim()), // Cải thiện việc kiểm tra bằng cách loại bỏ khoảng trắng

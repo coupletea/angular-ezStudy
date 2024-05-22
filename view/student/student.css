@@ -19,12 +19,8 @@ h2 {
   text-align: center;
 }
 
-input[type=text],
-input[type=number],
-input[type=date],
-select,
-.search-container input,
-.search-container select {
+input[type=text], input[type=number], input[type=date], select,
+.search-container input, .search-container select {
   padding: 0.2rem 0.5rem;
   margin-top: 5px;
   border: 1px solid #ced4da;
@@ -32,12 +28,8 @@ select,
   width: 100%;
   display: block;
 }
-input[type=text]:focus,
-input[type=number]:focus,
-input[type=date]:focus,
-select:focus,
-.search-container input:focus,
-.search-container select:focus {
+input[type=text]:focus, input[type=number]:focus, input[type=date]:focus, select:focus,
+.search-container input:focus, .search-container select:focus {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -54,10 +46,16 @@ button {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 0.25rem;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 2.5px #758d76;
 }
 button:hover {
-  background-color: #45a049;
+  background-color: #3d8540;
+  box-shadow: 0 3px #868686;
+}
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px #5c745d;
 }
 
 table {
@@ -65,17 +63,14 @@ table {
   border-collapse: collapse;
   margin-top: 20px;
 }
-
-th, td {
+table th, table td {
   text-align: left;
   padding: 8px;
 }
-
-th {
+table th {
   background-color: #f2f2f2;
 }
-
-tr:nth-child(even) {
+table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
@@ -92,19 +87,26 @@ tr:nth-child(even) {
   border: 1px solid #ddd;
   color: #337ab7;
   text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 3px #337ab7;
 }
 .pagination a.disabled {
   pointer-events: none;
   color: #ccc;
 }
-.pagination a.active {
+.pagination a.active, .pagination a:hover {
   background-color: #337ab7;
   color: white;
   border-color: #337ab7;
+  box-shadow: 0 1px #337ab7;
+}
+.pagination a:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px #2a5d99;
 }
 
 .modal {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;

@@ -1,6 +1,6 @@
 // Variables
 $primary-color: #4CAF50;
-$hover-primary-color: #45a049;
+$hover-primary-color: #3d8540;
 $background-color: #f4f4f4;
 $text-color: #333;
 $modal-background-color: rgba(0, 0, 0, 0.5);
@@ -31,13 +31,8 @@ h2 {
 }
 
 // Forms and input elements
-input[type="text"],
-input[type="number"],
-
-input[type="date"],
-select,
-.search-container input,
-.search-container select {
+input[type="text"], input[type="number"], input[type="date"], select,
+.search-container input, .search-container select {
     padding: 0.2rem 0.5rem;
     margin-top: 5px;
     border: 1px solid $border-color;
@@ -53,6 +48,7 @@ select,
 }
 
 // Buttons
+// Buttons
 button {
     background-color: $primary-color;
     border: none;
@@ -64,65 +60,84 @@ button {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 0.25rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 2.5px #758d76; // Shadow color should match the hover color for better effect
 
     &:hover {
         background-color: $hover-primary-color;
+        box-shadow: 0 3px #868686;
+    }
+
+    &:active {
+        transform: translateY(2px); // Simulates the button being pressed
+        box-shadow: 0 1px #5c745d; // Reduces shadow to give a pressed effect
     }
 }
+
+
 
 // Tables
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
 
-th, td {
-    text-align: left;
-    padding: 8px;
-}
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
 
-th {
-    background-color: #f2f2f2;
-}
+    th {
+        background-color: #f2f2f2;
+    }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 }
-
 
 // Pagination
+// Pagination
 .pagination {
-    margin-top: 20px; // Thêm khoảng trống trên
+    margin-top: 20px; // Added space above
     display: flex;
     justify-content: center;
     padding: 1em;
 
     a {
-        font-size: 1rem; // Tăng kích thước font
-        padding: 0.5rem 1rem; // Tăng padding cho dễ nhấn
+        font-size: 1rem; // Increased font size
+        padding: 0.5rem 1rem; // Increased padding for ease of clicking
         margin: 0 5px;
         border: 1px solid #ddd;
         color: $link-color;
         text-decoration: none;
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        box-shadow: 0 3px #337ab7; // Shadow should ideally be darker than the link color
 
         &.disabled {
             pointer-events: none;
             color: #ccc;
         }
 
-        &.active {
+        &.active, &:hover {
             background-color: $link-color;
             color: white;
             border-color: $link-color;
+            box-shadow: 0 1px #337ab7; // Less shadow for a raised effect
+        }
+
+        &:active {
+            transform: translateY(1px); // Press effect
+            box-shadow: 0 1px #2a5d99; // Even less shadow for a deeper press
         }
     }
 }
 
+
+
 // Modal
 .modal {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -157,7 +172,6 @@ tr:nth-child(even) {
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 0.3rem;
         outline: 0;
-
     }
 
     .close {

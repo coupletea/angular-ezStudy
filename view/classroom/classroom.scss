@@ -3,7 +3,7 @@ $font-family-main: 'Arial', sans-serif;
 $background-color: #f4f4f4;
 $text-color: #333;
 $primary-color: #4CAF50;
-$hover-primary-color: #45a049;
+$hover-primary-color: #527454;
 $border-color: #ccc;
 $error-color: #d9534f;
 $error-background-color: #f2dede;
@@ -26,7 +26,7 @@ body {
 .container {
     background-color: #fff;
     width: 90%;
-    max-width: 600px; // Smallest width across all media queries
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
@@ -51,7 +51,7 @@ form {
     label {
         display: block;
         margin-bottom: 5px;
-        font-weight: bold; // Assuming all labels are bold
+        font-weight: bold;
     }
 
     input[type="text"], input[type="number"], select {
@@ -67,35 +67,38 @@ form {
         }
     }
 
-    // Placeholder customization
     input::placeholder {
         color: #888;
     }
 }
 
-// Button styles common to all forms and actions
+// Button styles
+// Buttons
 button {
     background-color: $primary-color;
-    color: white;
-    padding: 12px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    color: white;
+    padding: 0.375rem 0.75rem;
+    text-align: center;
+    display: inline-block;
     font-size: 16px;
-    transition: background-color 0.3s;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 2.5px #8ca08d; // Shadow color should match the hover color for better effect
 
     &:hover {
         background-color: $hover-primary-color;
+        box-shadow: 0 3px #8a8d8b;
     }
 
-    &[ng-click="cancel()"] {
-        background-color: #f44336;
-
-        &:hover {
-            background-color: #d32f2f;
-        }
+    &:active {
+        transform: translateY(2px); // Simulates the button being pressed
+        box-shadow: 0 1px #748a74; // Reduces shadow to give a pressed effect
     }
 }
+
 
 // Table styles
 table {
@@ -119,32 +122,42 @@ table {
 }
 
 // Pagination styles
+// Pagination
 .pagination {
-    margin-top: 20px; // Thêm khoảng trống trên
+    margin-top: 20px; // Added space above
     display: flex;
     justify-content: center;
     padding: 1em;
 
     a {
-        font-size: 1rem; // Tăng kích thước font
-        padding: 0.5rem 1rem; // Tăng padding cho dễ nhấn
+        font-size: 1rem; // Increased font size
+        padding: 0.5rem 1rem; // Increased padding for ease of clicking
         margin: 0 5px;
         border: 1px solid #ddd;
         color: #337ab7;
         text-decoration: none;
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        box-shadow: 0 3px #337ab7; // Shadow should ideally be darker than the link color
 
         &.disabled {
             pointer-events: none;
             color: #ccc;
         }
 
-        &.active {
+        &.active, &:hover {
             background-color: #337ab7;
             color: white;
             border-color: #337ab7;
+            box-shadow: 0 1px #337ab7; // Less shadow for a raised effect
+        }
+
+        &:active {
+            transform: translateY(1px); // Press effect
+            box-shadow: 0 1px #2a5d99; // Even less shadow for a deeper press
         }
     }
 }
+
 
 // Error and loading styles
 .error {
@@ -153,6 +166,8 @@ table {
     padding: 10px;
     border-radius: 4px;
     margin-top: 10px;
+    font-size: 0.875rem;
+    display: block;
 }
 
 [ng-show="isLoading"] {

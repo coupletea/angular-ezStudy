@@ -11,6 +11,8 @@ angular.module("myApp").controller("CreateStudentController", [
       }
     };
 
+    $scope.error = [];
+
     // Load classrooms for dropdown
     $scope.classrooms = [];
     StudentData.getAllClassrooms().then(function (classrooms) {

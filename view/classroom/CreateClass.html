@@ -30,6 +30,11 @@
                     <option value="">Select a group</option>
                 </select>
             </div>
+            <div ng-if="form.errors.length > 0" class="error">
+                <ul>
+                    <li ng-repeat="error in form.errors">{{ error }}</li>
+                </ul>
+            </div>
             <div>
                 <button type="submit">Lưu</button>
             </div>

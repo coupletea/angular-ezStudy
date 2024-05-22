@@ -11,25 +11,29 @@ h1 {
 }
 
 .navBar {
-    background-color: #333;
+    background-color: #333; /* Dark background for the navbar */
     overflow: hidden;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .navBar .link {
-    float: left;
     display: block;
     color: white;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    background-color: #8f8dac; /* Slightly lighter than the navbar */
+    margin: 0 5px;           /* Optional: add margin between links */
+    border-radius: 4px;      /* Rounded corners for links */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navBar .link:hover {
-    background-color: #ddd;
-    color: black;
-    border-radius: 4px;
+    background-color: #ddd; /* Light background on hover */
+    color: black;           /* Text color changes to black on hover */
 }
 
 .ng-view {
